@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Towers of Resilience – Conference Paper Documentation</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="brand-mark"><i class="fa-solid fa-tower-observation"></i></span>
+        <div class="brand-text">
+          <strong>IoT Towers of Resilience</strong>
+          <span>Paper Documentation • MMAR 2024</span>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <a class="chip" href="#cite"><i class="fa-solid fa-fingerprint"></i> DOI</a>
+        <a class="chip chip-outline" href="#setup"><i class="fa-solid fa-screwdriver-wrench"></i> Build</a>
+        <a class="chip chip-outline" href="#architecture"><i class="fa-solid fa-diagram-project"></i> Architecture</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="kicker">
+            <span class="kicker-dot"></span>
+            Climate Extremes • Wildfire • Flood • Heat • Earthquake
+          </div>
+
+          <h1>
+            <span class="h1-top">A Field-Ready IoT Blueprint</span>
+            <span class="h1-main">Towers of Resilience</span>
+          </h1>
+
+          <p class="hero-lead">
+            A low-cost, autonomous IoT infrastructure designed to monitor environmental parameters
+            and trigger rapid alerts/actuation in vulnerable ecosystems and urban zones.
+          </p>
+
+          <div class="hero-badges">
+            <span class="badge badge-emerald"><i class="fa-solid fa-microchip"></i> NodeMCU ESP8266</span>
+            <span class="badge badge-sky"><i class="fa-solid fa-bolt"></i> Raspberry Pi Pico Hub</span>
+            <span class="badge badge-amber"><i class="fa-solid fa-cloud"></i> Firebase Storage</span>
+          </div>
+
+          <div class="hero-cta">
+            <a class="btn" href="#overview"><i class="fa-solid fa-book-open"></i> Read Overview</a>
+            <a class="btn btn-ghost" href="#components"><i class="fa-solid fa-cubes"></i> Components</a>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta">
+              <i class="fa-solid fa-signal"></i>
+              <div>
+                <strong>Multi‑site</strong>
+                <span>City • Forest • Remote hub</span>
+              </div>
+            </div>
+            <div class="meta">
+              <i class="fa-solid fa-chart-simple"></i>
+              <div>
+                <strong>Telemetry</strong>
+                <span>Temp • Humidity • Soil moisture</span>
+              </div>
+            </div>
+            <div class="meta">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div>
+                <strong>Resilience</strong>
+                <span>Fire response • Alerts • Logs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="pulse"></div>
+            <div>
+              <strong>System Snapshot</strong>
+              <span>What the towers do</span>
+            </div>
+          </div>
+
+          <ul class="checklist">
+            <li><i class="fa-solid fa-check"></i> Monitor temperature & humidity</li>
+            <li><i class="fa-solid fa-check"></i> Monitor soil moisture & trigger irrigation/sprinkling</li>
+            <li><i class="fa-solid fa-check"></i> Detect fire & activate pump/nozzle</li>
+            <li><i class="fa-solid fa-check"></i> Detect rain & auto-cover the sensor (reduce false readings)</li>
+            <li><i class="fa-solid fa-check"></i> Detect vibration events (earthquake logging)</li>
+            <li><i class="fa-solid fa-check"></i> Detect motion & alert for tampering/vandalism</li>
+          </ul>
+
+          <div class="hero-mini">
+            <div class="mini">
+              <span class="mini-k">Goal</span>
+              <span class="mini-v">Low‑cost, reliable, autonomous mitigation</span>
+            </div>
+            <div class="mini">
+              <span class="mini-k">Output</span>
+              <span class="mini-v">Cloud dataset for analysis & research</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="scrollhint" href="#overview" aria-label="Scroll to overview">
+        <i class="fa-solid fa-angles-down"></i>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Overview -->
+      <section id="overview" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-circle-info"></i> Overview</h2>
+          <p>
+            This documentation translates the conference paper into an implementation-first guide:
+            architecture, components, data flow, deployment scenarios, and evaluation ideas.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Problem Context</h3>
+            <p>
+              Climate change increases the frequency and intensity of extreme weather, creating threats to
+              environment, health, economy, and security—especially in vulnerable regions.
+            </p>
+            <div class="callout">
+              <i class="fa-solid fa-lightbulb"></i>
+              <div>
+                <strong>Design principle:</strong>
+                fast sensing, fast logging, and fast actuation — without expensive infrastructure.
+              </div>
+            </div>
+          </article>
+
+          <article class="panel panel-dark">
+            <h3><i class="fa-solid fa-bullseye"></i> Research Contribution</h3>
+            <p>
+              A distributed IoT system with multiple sensing towers (NodeMCU ESP8266 + sensors/actuators)
+              connected to a central hub (Raspberry Pi Pico) that stores telemetry in Firebase and supports
+              environmental safety actions such as fire suppression and irrigation control.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill pill-emerald">Low cost</span>
+              <span class="pill pill-sky">Autonomous</span>
+              <span class="pill pill-amber">Dataset‑ready</span>
+              <span class="pill pill-violet">Scalable</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section id="architecture" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-diagram-project"></i> System Architecture</h2>
+          <p>
+            A multi-tower sensing network feeds a central hub, which pushes data to cloud storage and
+            supports alerts and control actions.
+          </p>
+        </div>
+
+        <div class="arch">
+          <div class="arch-col">
+            <div class="arch-card">
+              <div class="arch-icon"><i class="fa-solid fa-tower-observation"></i></div>
+              <h3>Tower Nodes (Edge)</h3>
+              <p>NodeMCU ESP8266 + sensors + actuators in multiple locations (city/forest/remote sites).</p>
+              <ul class="mini-list">
+                <li><i class="fa-solid fa-thermometer-half"></i> Temperature / humidity</li>
+                <li><i class="fa-solid fa-droplet"></i> Soil moisture</li>
+                <li><i class="fa-solid fa-fire"></i> Flame detection + servo aim</li>
+                <li><i class="fa-solid fa-cloud-rain"></i> Rain detection + cover servo</li>
+                <li><i class="fa-solid fa-person-walking"></i> PIR motion</li>
+                <li><i class="fa-solid fa-wave-square"></i> Vibration / quake logging</li>
+              </ul>
+            </div>
+
+            <div class="arch-card">
+              <div class="arch-icon"><i class="fa-solid fa-gears"></i></div>
+              <h3>Actuation Layer</h3>
+              <p>Actions triggered on events and thresholds.</p>
+              <div class="tags">
+                <span class="tag">Water pump</span>
+                <span class="tag">Spray nozzle</span>
+                <span class="tag">Servo control</span>
+                <span class="tag">Alerting</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="arch-mid">
+            <div class="flow">
+              <div class="flow-step">
+                <span class="flow-dot"></span>
+                <div>
+                  <strong>Sense</strong>
+                  <span>Capture environmental readings + events</span>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <span class="flow-dot"></span>
+                <div>
+                  <strong>Decide</strong>
+                  <span>Thresholds + event triggers (local logic)</span>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <span class="flow-dot"></span>
+                <div>
+                  <strong>Actuate</strong>
+                  <span>Sprinkling, pump, cover, alerts</span>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <span class="flow-dot"></span>
+                <div>
+                  <strong>Log</strong>
+                  <span>Send telemetry to hub → Firebase</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hub-card">
+              <div class="hub-head">
+                <i class="fa-solid fa-bolt"></i>
+                <div>
+                  <strong>Central Hub</strong>
+                  <span>Raspberry Pi Pico</span>
+                </div>
+              </div>
+              <p>
+                Aggregates tower data, organizes readings, and pushes to cloud.
+                Can be extended with edge analytics and offline buffering.
+              </p>
+              <div class="hub-metrics">
+                <div class="hm"><span class="n" data-count="3">0</span><span class="t">Towers</span></div>
+                <div class="hm"><span class="n" data-count="6">0</span><span class="t">Sensors+</span></div>
+                <div class="hm"><span class="n" data-count="24">0</span><span class="t">Hours/day logs</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="arch-col">
+            <div class="arch-card">
+              <div class="arch-icon"><i class="fa-solid fa-cloud"></i></div>
+              <h3>Cloud Storage</h3>
+              <p>Firebase database stores logs and enables visualization dashboards.</p>
+              <div class="callout callout-soft">
+                <i class="fa-solid fa-chart-area"></i>
+                <div>
+                  <strong>Visualization idea:</strong> daily profiles for temperature/humidity/soil moisture,
+                  anomaly markers for fire/rain/quakes.
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-card">
+              <div class="arch-icon"><i class="fa-solid fa-shield"></i></div>
+              <h3>Alerts & Safety</h3>
+              <p>Notification layer for authorities and stakeholders (email/SMS/app).</p>
+              <div class="tags">
+                <span class="tag">Fire alert</span>
+                <span class="tag">Tamper alert</span>
+                <span class="tag">Quake log</span>
+                <span class="tag">Rain event</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Components -->
+      <section id="components" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-cubes"></i> Hardware & Software Components</h2>
+          <p>
+            A checklist view you can use to build the same system (or upgrade it).
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="panel">
+            <h3><i class="fa-solid fa-microchip"></i> Controllers</h3>
+            <ul class="list">
+              <li><strong>NodeMCU ESP8266</strong> – tower node controller</li>
+              <li><strong>Raspberry Pi Pico</strong> – central hub / aggregator</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3><i class="fa-solid fa-satellite-dish"></i> Sensors</h3>
+            <ul class="list">
+              <li>Temperature & humidity sensor</li>
+              <li>Soil moisture sensor</li>
+              <li>Flame sensor</li>
+              <li>Raindrop sensor</li>
+              <li>PIR motion sensor</li>
+              <li>Vibration sensor</li>
+            </ul>
+          </article>
+
+          <article class="panel panel-dark">
+            <h3><i class="fa-solid fa-gear"></i> Actuators</h3>
+            <ul class="list">
+              <li>Water pump</li>
+              <li>Spray nozzle</li>
+              <li>Servo motor (aim nozzle / cover sensor)</li>
+              <li>Optional: buzzer/LED, relay modules</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:22px;">
+          <article class="panel">
+            <h3><i class="fa-solid fa-code"></i> Firmware & Cloud</h3>
+            <ul class="list">
+              <li>ESP8266 firmware (Wi‑Fi + sensor reads + event triggers)</li>
+              <li>Pico aggregator logic (receive/format/push data)</li>
+              <li>Firebase integration (telemetry store + dashboards)</li>
+            </ul>
+          </article>
+
+          <article class="panel panel-dark">
+            <h3><i class="fa-solid fa-layer-group"></i> Data Model (Suggested)</h3>
+            <pre class="code"><code>{
+  "towerId": "CITY_A",
+  "ts": "2026-01-04T10:15:00Z",
+  "telemetry": {
+    "tempC": 31.6,
+    "humidity": 68.2,
+    "soilMoisture": 44
+  },
+  "events": {
+    "fire": false,
+    "rain": true,
+    "motion": false,
+    "vibration": false
+  },
+  "actions": {
+    "pump": false,
+    "spray": false,
+    "cover": true
+  }
+}</code></pre>
+            <p class="muted">Adjust to match your Firebase structure.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Setup -->
+      <section id="setup" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-screwdriver-wrench"></i> Implementation Guide</h2>
+          <p>Practical steps to replicate the prototype and extend it into a deployable product.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel">
+            <h3><i class="fa-solid fa-list-check"></i> Build Steps</h3>
+            <ol class="steps">
+              <li>Assemble tower node: ESP8266 + sensors + actuators + power</li>
+              <li>Calibrate sensor thresholds (moisture, fire, vibration)</li>
+              <li>Implement local triggers (pump, spray, cover)</li>
+              <li>Connect nodes to hub (Pico) and validate message format</li>
+              <li>Push logs to Firebase and confirm live updates</li>
+              <li>Design dashboard + alerts for critical events</li>
+            </ol>
+          </article>
+
+          <article class="panel panel-dark">
+            <h3><i class="fa-solid fa-lock"></i> Deployment Notes</h3>
+            <ul class="list">
+              <li>Use enclosures + weather sealing</li>
+              <li>Consider solar + battery for remote sites</li>
+              <li>Add offline buffering when internet is unstable</li>
+              <li>Secure credentials (rotate Firebase keys)</li>
+              <li>Maintain an audit log for actions (pump/spray/alerts)</li>
+            </ul>
+            <div class="callout">
+              <i class="fa-solid fa-bug-slash"></i>
+              <div><strong>Tip:</strong> reduce false positives with sensor fusion (e.g., fire + temp spike).</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Evaluation -->
+      <section id="evaluation" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-flask"></i> Evaluation & Metrics</h2>
+          <p>A template for reporting performance and accuracy—adapt it to your experiments.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="panel">
+            <h3><i class="fa-solid fa-bullseye"></i> Accuracy</h3>
+            <p class="muted">Compare readings against reference sensors / ground truth.</p>
+            <ul class="list">
+              <li>Mean Absolute Error (MAE)</li>
+              <li>Root Mean Square Error (RMSE)</li>
+              <li>Event detection precision/recall (fire/rain/motion)</li>
+            </ul>
+          </article>
+
+          <article class="panel panel-dark">
+            <h3><i class="fa-solid fa-stopwatch"></i> Responsiveness</h3>
+            <p class="muted">Measure system latency and actuation delay.</p>
+            <ul class="list">
+              <li>Sensor-to-cloud latency</li>
+              <li>Event-to-action time (pump/spray)</li>
+              <li>Notification delivery time</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3><i class="fa-solid fa-battery-three-quarters"></i> Efficiency</h3>
+            <p class="muted">Track sustainability for real deployments.</p>
+            <ul class="list">
+              <li>Power consumption per tower</li>
+              <li>Network bandwidth per day</li>
+              <li>Uptime / fault recovery</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Future Work -->
+      <section id="future" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-forward"></i> Extensions & Future Work</h2>
+          <p>Ideas to turn the prototype into a stronger resilience platform.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-card">
+              <h3>Edge Intelligence</h3>
+              <p>Use lightweight models for anomaly detection (heat spikes, unusual vibrations, humidity shifts).</p>
+              <div class="tags">
+                <span class="tag">TinyML</span><span class="tag">Anomaly</span><span class="tag">Prediction</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-card">
+              <h3>Resilient Networking</h3>
+              <p>Mesh networks (ESP‑NOW / LoRa) + store‑and‑forward when the internet drops.</p>
+              <div class="tags">
+                <span class="tag">LoRa</span><span class="tag">Mesh</span><span class="tag">Offline</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-card">
+              <h3>Governance & Community</h3>
+              <p>Local dashboards for communities, transparent incident history, and response coordination.</p>
+              <div class="tags">
+                <span class="tag">Dashboard</span><span class="tag">Alerts</span><span class="tag">Coordination</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Citation -->
+      <section id="cite" class="section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-fingerprint"></i> Citation</h2>
+          <p>Use this to reference the published work.</p>
+        </div>
+
+        <div class="panel panel-dark">
+          <p class="muted">DOI</p>
+          <div class="doi">
+            <span>10.1109/MMAR62187.2024.10680736</span>
+            <button class="btn btn-small" id="copyDoiBtn" type="button">
+              <i class="fa-solid fa-copy"></i> Copy
+            </button>
+          </div>
+
+          <pre class="code"><code>@inproceedings{IoTTowersOfResilience2024,
+  title     = {IoT Towers of Resilience: A Revolutionary Approach to Weathering Climate Extremes and Enhancing Sustainability in Vulnerable Ecosystems},
+  booktitle = {2024 28th International Conference on Methods and Models in Automation and Robotics (MMAR)},
+  year      = {2024},
+  doi       = {10.1109/MMAR62187.2024.10680736}
+}</code></pre>
+
+          <p class="muted">
+            Replace author list and pages with the official IEEE citation details from your proceedings entry.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="foot-left">
+        <div class="foot-brand">
+          <i class="fa-solid fa-tower-observation"></i>
+          <strong>IoT Towers of Resilience</strong>
+        </div>
+        <span class="muted">Documentation template • Designed for conference paper projects</span>
+      </div>
+
+      <div class="foot-right">
+        <a href="#top" class="chip chip-outline"><i class="fa-solid fa-arrow-up"></i> Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
